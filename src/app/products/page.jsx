@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import { ChevronLeft } from "lucide-react"; // optional: install lucide-react for icons
 
 export default function ProductsPage() {
   const [products, setProducts] = useState([]);
@@ -32,11 +33,20 @@ export default function ProductsPage() {
   if (error) return <p className="text-center py-10 text-red-500">{error}</p>;
 
   return (
-    <div className="max-w-6xl mx-auto py-10">
+    <div className="max-w-6xl mx-auto py-10 px-4">
+      {/* Back Button */}
+      <Link
+        href="/"
+        className="inline-flex items-center gap-2 text-white bg-blue-600 hover:bg-blue-700 transition-colors px-4 py-2 rounded-md font-medium mb-6"
+      >
+        <ChevronLeft className="w-4 h-4" />
+        Back to Home
+      </Link>
+
       <h1 className="text-3xl font-bold text-center mb-6">Products</h1>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {products.map((product) => (
-          <div key={product._id} className="border rounded p-4 shadow-md">
+          <div key={product._id} className="border rounded p-4 shadow-md hover:shadow-lg transition-shadow">
             <h2 className="text-xl font-bold mb-2">{product.name}</h2>
             <p className="text-gray-700 mb-2">{product.description}</p>
             <p className="font-semibold mb-4">${product.price}</p>
