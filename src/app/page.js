@@ -1,18 +1,11 @@
-import LoginButton from "@/components/LoginButton";
 import Navbar from "@/components/Navbar";
-import ProductsPage from "@/components/ProductsPage";
-import UserInfo from "@/components/UserInfo";
-import { getServerSession } from "next-auth";
+import ProductHighlights from "@/components/ProductHighlights";
 import Link from "next/link";
-import { authOptions } from "./api/auth/[...nextauth]/route";
 
-export default async function Home() {
-  const session = await getServerSession(authOptions);
+export default function Home() {
   return (
     <div>
-      {/* Navbar */}
       <Navbar />
-
 
       {/* Hero Section */}
       <section className="bg-gradient-to-r from-blue-600 to-indigo-700 text-white py-20 text-center">
@@ -31,19 +24,12 @@ export default async function Home() {
       </section>
 
       {/* Product Highlights */}
-      <Link href="/products" className="...">
-          <ProductsPage></ProductsPage>
-        </Link>
+      <ProductHighlights limit={3} />
 
       {/* Footer */}
       <footer className="bg-gray-900 text-gray-300 py-8">
         <div className="max-w-7xl mx-auto text-center">
           <p>&copy; {new Date().getFullYear()} Prod Store. All rights reserved.</p>
-          <div className="flex justify-center space-x-4 mt-4">
-            <Link href="/about" className="hover:text-white">About</Link>
-            <Link href="/contact" className="hover:text-white">Contact</Link>
-            <Link href="/products" className="hover:text-white">Products</Link>
-          </div>
         </div>
       </footer>
     </div>

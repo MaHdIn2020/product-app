@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 
-export default function ProductHighlights() {
+export default function ProductHighlights({ limit = 3 }) {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -12,7 +12,8 @@ export default function ProductHighlights() {
       try {
         const res = await fetch("/api/products");
         const data = await res.json();
-        setProducts(data);
+        // Show only the latest `limit` products
+        setProducts(data.slice(-limit).reverse());
       } catch (err) {
         console.error("Failed to fetch products:", err);
       } finally {
@@ -21,10 +22,10 @@ export default function ProductHighlights() {
     }
 
     fetchProducts();
-  }, []);
+  }, [limit]);
 
   if (loading) return <p className="text-center py-10 text-gray-500">Loading products...</p>;
-  if (products.length === 0) return <p className="text-center py-10 text-gray-500">No products available.</p>;
+  if (!products.length) return <p className="text-center py-10 text-gray-500">No products available.</p>;
 
   return (
     <section className="py-16 bg-gray-100">
