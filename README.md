@@ -5,7 +5,7 @@ A simple product management application built with **Next.js 15** and **NextAuth
 ---
 
 ## Live Demo
-[Production Site](https://my-product-p3yuo9yu9-tanjipsuraitmahdin-gmailcoms-projects.vercel.app)
+[Production Site](https://my-product-s35l5u4e5-tanjipsuraitmahdin-gmailcoms-projects.vercel.app/)
 
 ---
 
